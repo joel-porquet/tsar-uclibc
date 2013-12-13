@@ -1,0 +1,12 @@
+config TARGET_ARCH
+	string
+	default "tsar"
+
+config FORCE_OPTIONS_FOR_ARCH
+	bool
+	default y
+	select ARCH_LITTLE_ENDIAN
+	select ARCH_HAS_MMU
+	# TODO: for now
+	select ARCH_HAS_NO_SHARED
+	select ARCH_HAS_NO_LDSO
