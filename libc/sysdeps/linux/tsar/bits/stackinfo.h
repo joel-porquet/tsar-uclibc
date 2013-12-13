@@ -1,0 +1,6 @@
+#ifndef _TSAR_BITS_STACKINFO_H
+#define _TSAR_BITS_STACKINFO_H
+
+#define _STACK_GROWS_DOWN 1
+
+#endif /* _TSAR_BITS_STACKINFO_H */
