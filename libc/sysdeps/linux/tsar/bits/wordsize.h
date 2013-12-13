@@ -1,0 +1,6 @@
+#ifndef _TSAR_BITS_WORDSIZE_H
+#define _TSAR_BITS_WORDSIZE_H
+
+#define __WORDSIZE 32
+
+#endif /* _TSAR_BITS_WORDSIZE_H */
