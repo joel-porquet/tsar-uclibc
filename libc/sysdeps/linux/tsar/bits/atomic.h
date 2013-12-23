@@ -20,17 +20,17 @@
 	 __asm__ __volatile__ (                                              \
 		 ".set push\n"                                               \
 		 "1:"                                                        \
-		 "ll	%[prev],%[mem]\n"                                    \
+		 "ll	%[prev],%[m]\n"                                      \
 		 "move	%[cmp], $0\n"                                        \
-		 "bne	%[prev],%[oldval],2f\n"                              \
-		 "move	%[cmp],%[newval]\n"                                  \
-		 "sc	%[cmp],%[mem]\n"                                     \
+		 "bne	%[prev],%[oldv],2f\n"                                \
+		 "move	%[cmp],%[newv]\n"                                    \
+		 "sc	%[cmp],%[m]\n"                                       \
 		 "beqz	%[cmp],1b\n"                                         \
 		 "sync	\n"                                                  \
 		 "2:\n"                                                      \
 		 ".set pop\n"                                                \
-		 : [prev] "=&r" (prev), [cmp] "=&r" (cmp), [mem] "+m" (*mem) \
-		 : [oldval] "r" (oldval), [newval] "r" (newval)              \
+		 : [prev] "=&r" (prev), [cmp] "=&r" (cmp), [m] "+m" (*mem)   \
+		 : [oldv] "r" (oldval), [newv] "r" (newval)                  \
 		 : "memory");                                                \
 	 (__typeof (*mem))prev; })
 
