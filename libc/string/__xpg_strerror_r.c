@@ -19,7 +19,7 @@
 
 extern const char _string_syserrmsgs[] attribute_hidden;
 
-#if defined(__alpha__) || defined(__mips__) || defined(__sparc__)
+#if defined(__alpha__) || defined(__TARGET_mips__) || defined(__sparc__)
 
 static const unsigned char estridx[] = {
 	0,							/* success is always 0 */
@@ -172,7 +172,7 @@ int __xpg_strerror_r(int errnum, char *strerrbuf, size_t buflen)
 
 #ifdef __UCLIBC_HAS_ERRNO_MESSAGES__
 
-#if defined(__alpha__) || defined(__mips__) || defined(__sparc__)
+#if defined(__alpha__) || defined(__TARGET_mips__) || defined(__sparc__)
 	/* Need to translate errno to string index. */
 	for (i = 0 ; i < sizeof(estridx)/sizeof(estridx[0]) ; i++) {
 		if (estridx[i] == errnum) {

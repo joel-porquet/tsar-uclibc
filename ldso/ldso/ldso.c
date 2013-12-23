@@ -1295,12 +1295,14 @@ of this helper program; chances are you did not intend to run this program.\n\
 
 	_dl_debug_early("Beginning relocation fixups\n");
 
-#ifdef __mips__
+#ifdef __TARGET_mips__
 	/*
 	 * Relocation of the GOT entries for MIPS have to be done
 	 * after all the libraries have been loaded.
 	 */
 	_dl_perform_mips_global_got_relocations(_dl_loaded_modules, !unlazy);
+#elif defined(__TARGET_tsar__)
+	_dl_perform_tsar_global_got_relocations(_dl_loaded_modules, !unlazy);
 #endif
 
 	/*

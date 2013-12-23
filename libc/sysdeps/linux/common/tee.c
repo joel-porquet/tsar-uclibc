@@ -8,6 +8,7 @@
  */
 
 #include <sys/syscall.h>
+#include <unistd.h>
 
 #if defined __NR_tee && defined __USE_GNU
 # include <fcntl.h>

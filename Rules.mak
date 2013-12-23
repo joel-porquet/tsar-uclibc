@@ -430,6 +430,13 @@ ifeq ($(TARGET_ARCH),mips)
 	CPU_CFLAGS-$(CONFIG_MIPS_N32_ABI)+=-mabi=n32
 endif
 
+ifeq ($(TARGET_ARCH),tsar)
+	OPTIMIZATION+=-mno-split-addresses
+	CPU_CFLAGS-y+=-mips32
+	CPU_CFLAGS-y+=-mabi=32
+	CPU_LDFLAGS-y+=-Wl,-melf32ltsmip
+endif
+
 ifeq ($(TARGET_ARCH),nios)
 	OPTIMIZATION+=-funaligned-struct-hack
 	CPU_LDFLAGS-y+=-Wl,-m32

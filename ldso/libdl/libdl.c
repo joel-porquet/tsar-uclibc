@@ -79,8 +79,10 @@ extern void _dl_run_fini_array(struct elf_resolve *);
 int _dl_map_cache(void);
 int _dl_unmap_cache(void);
 #endif
-#ifdef __mips__
+#ifdef __TARGET_mips__
 extern void _dl_perform_mips_global_got_relocations(struct elf_resolve *tpnt, int lazy);
+#elif defined (__TARGET_tsar__)
+extern void _dl_perform_tsar_global_got_relocations(struct elf_resolve *tpnt, int lazy);
 #endif
 #ifdef __SUPPORT_LD_DEBUG__
 extern char *_dl_debug;
@@ -555,12 +557,14 @@ static void *do_dlopen(const char *libname, int flag, ElfW(Addr) from)
 	/* Extend the global scope by adding the local scope of the dlopened DSO. */
 	ls->next = &dyn_chain->dyn->symbol_scope;
 #endif
-#ifdef __mips__
+#ifdef __TARGET_mips__
 	/*
 	 * Relocation of the GOT entries for MIPS have to be done
 	 * after all the libraries have been loaded.
 	 */
 	_dl_perform_mips_global_got_relocations(tpnt, !now_flag);
+#elif defined(__TARGET_tsar)
+	_dl_perform_tsar_global_got_relocations(tpnt, !now_flag);
 #endif
 
 	if (_dl_fixup(dyn_chain, &_dl_loaded_modules->symbol_scope, now_flag))

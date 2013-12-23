@@ -201,7 +201,7 @@ void __cxa_finalize(void *dso_handle)
          */
         if ((dso_handle == NULL || dso_handle == efp->funcs.cxa_atexit.dso_handle)
             /* We don't want to run this cleanup more than once. */
-            && !atomic_compare_and_exchange_bool_acq(&efp->type, ef_free, ef_cxa_atexit)
+            && !atomic_compare_and_exchange_bool_acq((&efp->type), ef_free, ef_cxa_atexit)
            ) {
             /* glibc passes status (0) too, but that's not in the prototype */
             (*efp->funcs.cxa_atexit.func)(efp->funcs.cxa_atexit.arg);

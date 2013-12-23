@@ -58,11 +58,17 @@
 #endif
 #ifndef INLINE_SYSCALL_NOERR_NCS
 # define INLINE_SYSCALL_NOERR_NCS(name, nr, args...)			\
+(__extension__								\
 ({									\
 	INTERNAL_SYSCALL_DECL(__err);					\
+	(__extension__							\
+	 ({								\
 	long __res = INTERNAL_SYSCALL_NCS(name, __err, nr, args);	\
 	__res;								\
-})
+	  })								\
+	);								\
+})									\
+)
 #endif
 
 /* No point in forcing people to implement both when they only need one */

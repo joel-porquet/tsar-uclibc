@@ -98,7 +98,8 @@ typedef __uid_t uid_t;
 /* We need `struct timespec' later on.  */
 # define __need_timespec
 # include <time.h>
-
+#endif
+#if defined __USE_POSIX199309
 /* Get the `siginfo_t' type plus the needed symbols.  */
 # include <bits/siginfo.h>
 #endif
@@ -321,7 +322,7 @@ extern int __syscall_rt_sigaction(int, const struct sigaction *,
 extern __typeof(sigaction) __libc_sigaction;
 libc_hidden_proto(sigaction)
 
-# ifdef __mips__
+# ifdef __TARGET_mips__
 #  define _KERNEL_NSIG_WORDS (_NSIG / _MIPS_SZLONG)
 typedef struct {
 	unsigned long sig[_KERNEL_NSIG_WORDS];

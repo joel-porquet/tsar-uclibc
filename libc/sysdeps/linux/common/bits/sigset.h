@@ -31,7 +31,7 @@ typedef int __sig_atomic_t;
  * In uclibc, kernel and userspace sigset_t is always the same.
  * BTW, struct sigaction is also the same on kernel and userspace side.
  */
-#if defined(__mips__)
+#if defined TARGET_mips
 # define _SIGSET_NWORDS	(128 / (8 * sizeof (unsigned long)))
 #else
 # define _SIGSET_NWORDS	(64 / (8 * sizeof (unsigned long)))

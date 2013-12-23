@@ -6,7 +6,7 @@
 #ifndef __ARCH_HAS_DEPRECATED_SYSCALLS__
 #  define __IPC_64	0x0
 #else
-# if __WORDSIZE == 32 || defined __alpha__ || defined __mips__
+# if __WORDSIZE == 32 || defined __alpha__ || defined __TARGET_mips__
 #  define __IPC_64	0x100
 # else
 #  define __IPC_64	0x0

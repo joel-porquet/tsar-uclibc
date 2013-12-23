@@ -45,7 +45,7 @@
 #define	__WIFSIGNALED(status)	(((unsigned)((status) & 0xffff) - 1U) < 0xffU)
 
 /* Nonzero if STATUS indicates the child is stopped.  */
-#if !defined(__mips__)
+#if !defined(__TARGET_mips__)
 #define	__WIFSTOPPED(status)	(((status) & 0xff) == 0x7f)
 #else
 #define	__WIFSTOPPED(status)	(((status) & 0xff) == 0x7f && ((status) & 0xff00))

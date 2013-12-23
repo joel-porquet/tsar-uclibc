@@ -136,7 +136,7 @@ const char _string_syserrmsgs[] = {
 	/* 122: 2852, 20 */ "Disk quota exceeded\0"
 	/* 123: 2872, 16 */ "No medium found\0"
 	/* 124: 2888, 18 */ "Wrong medium type"
-#if defined(__mips__) || defined(__sparc__)
+#if defined(__TARGET_mips__) || defined(__sparc__)
 	"\0"
 	/* 125: 2906, 28 */ "File locking deadlock error"
 #endif

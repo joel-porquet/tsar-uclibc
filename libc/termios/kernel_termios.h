@@ -75,7 +75,7 @@ struct __kernel_termios
 
 
 
-#elif defined(__mips__)
+#elif defined(__TARGET_mips__)
 
 
 

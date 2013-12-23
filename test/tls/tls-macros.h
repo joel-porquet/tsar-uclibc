@@ -16,8 +16,12 @@
 /* XXX Until we get compiler support we don't need declarations.  */
 #define VAR_INT_DECL(x)
 
-#ifdef __mips__
+#ifdef __TARGET_mips__
 #include <tls-macros-mips.h>
+#endif
+
+#ifdef __TARGET_tsar__
+#include <tls-macros-tsar.h>
 #endif
 
 #ifdef __arm__

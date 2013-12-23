@@ -143,7 +143,7 @@ unsigned int __dl_parse_dynamic_info(ElfW(Dyn) *dpnt, unsigned long dynamic_info
 	for (; dpnt->d_tag; dpnt++) {
 		if (dpnt->d_tag < DT_NUM) {
 			dynamic_info[dpnt->d_tag] = dpnt->d_un.d_val;
-#ifndef __mips__
+#if !defined(__TARGET_mips__) || !defined(__TARGET_tsar__)
 			/* we disable for mips because normally this page is readonly
 			 * and modifying the value here needlessly dirties a page.
 			 * see this post for more info:

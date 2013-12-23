@@ -8,6 +8,8 @@
  */
 
 #include <sys/syscall.h>
+#include <sys/uio.h>
+#include <unistd.h>
 
 #if defined __NR_vmsplice && defined __USE_GNU
 # include <fcntl.h>

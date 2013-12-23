@@ -6,7 +6,7 @@
 #include <features.h>
 #include <tls.h>
 
-#ifdef __mips__
+#if defined(__TARGET_mips__) || defined(__TARGET_tsar__)
 /* The MIPS ABI specifies that the dynamic section has to be read-only.  */
 
 #define DL_RO_DYN_SECTION 1

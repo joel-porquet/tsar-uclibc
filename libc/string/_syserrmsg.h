@@ -14,7 +14,7 @@
 /* NOTE: If we ever do internationalized syserr messages, this will
  * have to be changed! */
 
-#if defined(__mips__) || defined(__sparc__)
+#if defined(__TARGET_mips__) || defined(__sparc__)
 /* sparce and mips have an extra error entry, as EDEADLK and EDEADLOCK have
  * different meanings on those platforms. */
 # define _SYS_NERR			126

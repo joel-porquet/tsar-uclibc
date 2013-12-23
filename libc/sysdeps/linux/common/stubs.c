@@ -46,7 +46,7 @@ __attribute_used__ static int ret_enosys_stub(void)
 # define __NR_iopl 0
 #endif
 
-#ifdef __mips__
+#ifdef __TARGET_mips__
 # define __NR_fadvise64_64 __NR_fadvise64
 #endif
 

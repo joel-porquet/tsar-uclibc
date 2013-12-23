@@ -68,7 +68,7 @@
 #define ELFCLASSM	ELFCLASS32
 #endif
 
-#if defined(__mips__)
+#if defined(__TARGET_mips__) || defined(__TARGET_tsar__)
 #define MATCH_MACHINE(x) (x == EM_MIPS || x == EM_MIPS_RS3_LE)
 #define ELFCLASSM	ELFCLASS32
 #endif
