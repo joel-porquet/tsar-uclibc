@@ -1,0 +1,46 @@
+#ifndef _SIGNAL_H
+# error "Never include <bits/sigaction.h> directly; use <signal.h> instead."
+#endif
+
+/* sigaction as defined by Linux */
+struct sigaction {
+#ifdef __USE_POSIX199309
+	union {
+		__sighandler_t sa_handler;
+		void (*sa_sigaction)(int, siginfo_t *, void *);
+	} __sigaction_handler;
+# define sa_handler     __sigaction_handler.sa_handler
+# define sa_sigaction   __sigaction_handler.sa_sigaction
+#else
+	__sighandler_t  sa_handler;
+#endif
+	unsigned long   sa_flags;
+	sigset_t        sa_mask;
+	/* TSAR has no sa_restorer field.  */
+};
+
+/* Bits in `sa_flags'.  */
+#define SA_NOCLDSTOP  0x00000008  /* Don't send SIGCHLD when children stop.  */
+#define SA_NOCLDWAIT  0x00000080  /* Don't create zombie on child death.  */
+#define SA_SIGINFO    0x00000010  /* Invoke signal-catching function with
+				     three arguments instead of one.  */
+#if defined __USE_UNIX98 || defined __USE_MISC
+# define SA_ONSTACK   0x00000001 /* Use signal stack by using `sa_restorer'. */
+# define SA_RESETHAND 0x00000004 /* Reset to SIG_DFL on entry to handler.  */
+# define SA_NODEFER   0x00000020 /* Don't automatically block the signal
+				    when its handler is being executed.  */
+# define SA_RESTART   0x00000040 /* Restart syscall on signal return.  */
+#endif
+#ifdef __USE_MISC
+# define SA_INTERRUPT 0x20000000 /* Historic no-op.  */
+
+/* Some aliases for the SA_ constants.  */
+# define SA_NOMASK    SA_NODEFER
+# define SA_ONESHOT   SA_RESETHAND
+# define SA_STACK     SA_ONSTACK
+#endif
+
+/* Values for the HOW argument to `sigprocmask'.  */
+#define SIG_BLOCK          0	/* for blocking signals */
+#define SIG_UNBLOCK        1	/* for unblocking signals */
+#define SIG_SETMASK        2	/* for setting the signal mask */
