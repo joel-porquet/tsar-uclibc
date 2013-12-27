@@ -2,7 +2,7 @@
 
 /* void *memset(void *s, int c, size_t n) */
 
-ENTRY(memset)
+LEAF(memset)
 	.set push
 	.set noreorder
 
@@ -57,7 +57,5 @@ exit:
 
 	.set reorder
 	.set pop
-ENDPROC(memset)
-
+END(memset)
 libc_hidden_def(memset)
-

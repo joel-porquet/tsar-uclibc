@@ -1,5 +1,6 @@
 #include <sys/regdef.h>
 #include <sys/asm.h>
+#include <sysdep.h>
 #include <features.h>
 
 
@@ -33,48 +34,44 @@
 */
 
 .text
-	.globl __start
-	.type __start,@function
-	.type _init,@function
-	.type _fini,@function
+	.type	_init, @function
+	.type	_fini, @function
 #ifndef __UCLIBC_CTOR_DTOR__
-	.weak _init
-	.weak _fini
+	.weak	_init
+	.weak	_fini
 #endif
-	.type main,@function
-	.type __uClibc_main,@function
-	.ent __start
+	.type	main, @function
+	.type	__uClibc_main, @function
 
-__start:
+NESTED(__start, 32, sp)
 #ifdef __PIC__
-	SETUP_GPX($0)
+	SETUP_GPX(zero)
 #else
-	la	$28, _gp	/* Setup GP correctly if we're non-PIC.  */
-	move	$31, $0
+	la	gp, _gp	/* Setup GP correctly if we're non-PIC.  */
+	move	ra, zero
 #endif
 
-	la	$4, main	/* main */
-	lw	$5, 0($29)	/* argc */
-	addiu	$6, $29, 4	/* argv  */
+	la	a0, main	/* main */
+	lw	a1, 0(sp)	/* argc */
+	addiu	a2, sp, 4	/* argv  */
 
 	/* Allocate space on the stack for height arguments and
 	 * make sure the stack is aligned to double words (8 bytes) */
 
-	and	$29, -2 * 4
+	and	sp, -2 * 4
 
-	subu	$29, 32
-	la	$7, _init	/* init */
-	la	$8, _fini
-	sw	$8, 16($29)	/* fini */
-	sw	$2, 20($29)	/* rtld_fini */
-	sw	$29, 24($29)	/* stack_end */
+	subu	sp, 32
+	la	a3, _init	/* init */
+	la	t0, _fini
+	sw	t0, 16(sp)	/* fini */
+	sw	v0, 20(sp)	/* rtld_fini */
+	sw	sp, 24(sp)	/* stack_end */
 
 	jal	__uClibc_main
 hlt:
 	/* Crash if somehow `__uClibc_main' returns anyway.  */
 	b	hlt
-.size __start,.-__start
-.end __start
+END(__start)
 
 /* Define a symbol for the first piece of initialized data.  */
 	.data

@@ -20,4 +20,7 @@
 	move $31, r    ;\
 	.set reorder   ;
 
+#define SAVE_GP(x) \
+	.cprestore x
+
 #endif /* _SYS_TSAR_ASM_H */

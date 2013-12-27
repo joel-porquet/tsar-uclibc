@@ -2,7 +2,7 @@
 
 /* void *memcpy(void *s1, const void *s2, size_t n) */
 
-ENTRY(memcpy)
+LEAF(memcpy)
 	.set push
 	.set noreorder
 
@@ -101,7 +101,5 @@ shfth:
 
 	.set reorder
 	.set pop
-ENDPROC(memcpy)
-
+END(memcpy)
 libc_hidden_def(memcpy)
-

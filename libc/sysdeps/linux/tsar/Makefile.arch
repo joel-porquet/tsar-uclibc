@@ -6,5 +6,5 @@
 #
 
 CSRC-y :=
-SSRC-y :=
+SSRC-y := __longjmp.S clone.S setjmp.S
 
