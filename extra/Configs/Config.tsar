@@ -7,6 +7,3 @@ config FORCE_OPTIONS_FOR_ARCH
 	default y
 	select ARCH_LITTLE_ENDIAN
 	select ARCH_HAS_MMU
-	# TODO: for now
-	select ARCH_HAS_NO_SHARED
-	select ARCH_HAS_NO_LDSO
