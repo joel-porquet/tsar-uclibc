@@ -98,6 +98,7 @@ CSRC- += $(if $(findstring =c6x=,=$(TARGET_ARCH)=),vfork.c)
 CSRC- += $(if $(findstring =sh=,=$(TARGET_ARCH)=),vfork.c)
 CSRC- += $(if $(findstring =sparc=,=$(TARGET_ARCH)=),vfork.c)
 CSRC- += $(if $(findstring =i386=,=$(TARGET_ARCH)=),vfork.c)
+CSRC- += $(if $(findstring =tsar=,=$(TARGET_ARCH)=),vfork.c)
 
 CSRC-y := $(filter-out $(CSRC-),$(CSRC-y))
 
