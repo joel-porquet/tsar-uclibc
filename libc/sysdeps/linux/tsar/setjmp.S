@@ -74,9 +74,9 @@ ENTRY(__sigsetjmp)
 	/* save global pointer */
 	sw	gp, 44(a0)
 #ifdef __PIC__
-	la	t9, __sigsetjmp_save
+	la	t9, __sigjmp_save
 	jr	t9
 #else
-	j	__sigsetjmp_save
+	j	__sigjmp_save
 #endif
 END(__sigsetjmp)
