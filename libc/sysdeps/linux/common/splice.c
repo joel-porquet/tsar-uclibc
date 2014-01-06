@@ -8,6 +8,7 @@
  */
 
 #include <sys/syscall.h>
+#include <unistd.h>
 
 #if defined __NR_splice && defined __UCLIBC_HAS_LFS__ && defined __USE_GNU
 # include <fcntl.h>

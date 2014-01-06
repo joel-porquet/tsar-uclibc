@@ -11,6 +11,7 @@
 #include <_lfs_64.h>
 #include <sys/syscall.h>
 #include <bits/wordsize.h>
+#include <unistd.h>
 
 #ifdef __NR_arm_fadvise64_64
 # define __NR_fadvise64_64 __NR_arm_fadvise64_64
