@@ -6,7 +6,7 @@
 .section .init
 .globl	_init
 .type	_init, @function
-	//lw	gp, 24(sp)
+	lw	gp, 24(sp)
 	lw	ra, 28(sp)
 	.set	noreorder
 	.set	nomacro
@@ -21,7 +21,7 @@
 .section .fini
 .globl	_fini
 .type	_fini, @function
-	//lw	gp, 24(sp)
+	lw	gp, 24(sp)
 	lw	ra, 28(sp)
 	.set	noreorder
 	.set	nomacro
