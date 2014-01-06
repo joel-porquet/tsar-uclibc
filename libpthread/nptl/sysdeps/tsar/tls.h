@@ -41,7 +41,10 @@ typedef union dtv
 	({                           \
 	 void *__result;             \
 	 __asm__ __volatile__ (      \
+		 ".set	push\n"      \
+		 ".set	mips32r2\n"  \
 		 "rdhwr	%0, $29\n"   \
+		 ".set	pop\n"       \
 		 : "=v" (__result)); \
 	 __result;                   \
 	 })
@@ -51,7 +54,10 @@ typedef union dtv
 # include <tcb-offsets.h>
 
 # define READ_THREAD_POINTER(rd) \
-	rdhwr	rd, $29;
+	.set	push;            \
+	.set	mips32r2;        \
+	rdhwr	rd, $29;         \
+	.set	pop;
 
 #endif /* __ASSEMBLER__ */
 
