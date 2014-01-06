@@ -30,6 +30,16 @@
 	.end	name; \
 	.size	name,.-name
 
+#define ret         \
+	jr	ra; \
+	nop
+
+#else /* ! __ASSEMBLER__ */
+
+/* Pointer mangling is not yet supported for MIPS.  */
+#define PTR_MANGLE(var) (void) (var)
+#define PTR_DEMANGLE(var) (void) (var)
+
 #endif /* __ASSEMBLER__ */
 
 #include <common/sysdep.h>
