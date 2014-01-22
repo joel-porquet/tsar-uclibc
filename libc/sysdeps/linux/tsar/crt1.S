@@ -1,6 +1,5 @@
-#include <sys/regdef.h>
 #include <sys/asm.h>
-#include <sysdep.h>
+#include <sys/regdef.h>
 #include <features.h>
 
 
