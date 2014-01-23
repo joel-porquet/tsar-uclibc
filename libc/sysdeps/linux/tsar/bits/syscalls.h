@@ -73,8 +73,8 @@
 #define LOAD_ARGS_5 LOAD_ARGS_4
 #define LOAD_ARGS_6 LOAD_ARGS_5
 
-#define ASM_ARGS_0
-#define ASM_ARGS_1 "r" (_a0)
+#define ASM_ARGS_0 "r" (__v0)
+#define ASM_ARGS_1 ASM_ARGS_0, "r" (_a0)
 #define ASM_ARGS_2 ASM_ARGS_1, "r" (_a1)
 #define ASM_ARGS_3 ASM_ARGS_2, "r" (_a2)
 #define ASM_ARGS_4 ASM_ARGS_3, "r" (_a3)
